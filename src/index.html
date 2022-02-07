@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <script src="main.js" defer></script>
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <section class="s1">
+      <form action="#" class="form">
+        <label for="pid">
+          <p>Product Id</p>
+          <input type="number" id="pid" min="1" required />
+        </label>
+        <label for="pn">
+          <p>Product Name</p>
+          <input type="text" id="pn" required />
+          <!-- <br>
+          <span class="error-msg">error is here</span> -->
+        </label>
+        <label for="pp">
+          <p>Product Price</p>
+          <input type="number" id="pp" required />
+        </label>
+        <br />
+        <p></p>
+        <input type="submit" value="Add Product" id="submit" />
+      </form>
+      <span id="error"></span>
+    </section>
+    <section class="s2">
+      <table>
+        <thead>
+          <th>Product Id</th>
+          <th>Product Name</th>
+          <th>Product Price</th>
+        </thead>
+        <tbody id="values">
+        </tbody>
+      </table>
+    </section>
+  </body>
 </html>
