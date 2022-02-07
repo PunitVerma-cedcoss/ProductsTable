@@ -1,3 +1,4 @@
+const data = []
 // hadling form submit
 document.getElementById("submit").addEventListener("click", function (e) {
     e.preventDefault()
@@ -5,6 +6,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
     var ProductName = document.getElementById("pn").value
     var ProductPrice = document.getElementById("pp").value
     if (handleError(ProductId, ProductName, ProductPrice)) {
+        data.push({ "ProductId": ProductId, "ProductName": ProductName, "ProductPrice": ProductPrice })
         renderTable({ "ProductId": ProductId, "ProductName": ProductName, "ProductPrice": ProductPrice })
     }
     else {
@@ -52,14 +54,14 @@ function informError(id, error = true) {
 // render table with json data
 function renderTable(object) {
     var tr = generateNodes("tr")
-    tr.appendChild(generateNodes("td",object.ProductId))
-    tr.appendChild(generateNodes("td",object.ProductName))
-    tr.appendChild(generateNodes("td",`USD ${object.ProductPrice}`))
+    tr.appendChild(generateNodes("td", object.ProductId))
+    tr.appendChild(generateNodes("td", object.ProductName))
+    tr.appendChild(generateNodes("td", `USD ${object.ProductPrice}`))
     document.getElementById("values").prepend(tr)
 }
 
 // generate nodes
-function generateNodes(type,content=''){
+function generateNodes(type, content = '') {
     var node = document.createElement(type)
     if (content != '')
         node.innerText = content
