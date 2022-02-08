@@ -17,7 +17,8 @@ document.getElementById("submit").addEventListener("click", function (e) {
     }
 })
 // update from click event
-document.getElementById("update").addEventListener("click", function () {
+document.getElementById("update").addEventListener("click", function (e) {
+    e.preventDefault()
     updateUtil()
 })
 // error handling
@@ -72,6 +73,7 @@ function renderTable() {
         `
     })
     document.getElementById("values").innerHTML = markup
+    clearFieldsUtil()
 }
 // update function
 function updateUtil() {
@@ -95,6 +97,9 @@ function updateUtil() {
         }
         renderTable()
         clearFieldsUtil()
+        // toggling the button from edit to update
+        document.getElementById("submit").classList.remove("hide")
+        document.getElementById("update").classList.add("hide")
     }
     else {
         console.log("errors")
@@ -103,7 +108,6 @@ function updateUtil() {
 }
 // editing function
 function edit(id) {
-    alert("id is " + id)
     // toggling the button from edit to update
     document.getElementById("submit").classList.add("hide")
     document.getElementById("update").classList.remove("hide")
@@ -121,8 +125,16 @@ function edit(id) {
 }
 // deleting function
 function del(id) {
-    data = data.filter(i => i.ProductId !== parseInt(id))
-    renderTable()
+    for (let index = 0; index < data.length; index++) {
+        if(data[index].ProductId == id)
+        {
+            data.splice(index,1)
+            console.log("removing ",data[index])
+            renderTable()
+            break
+        }
+        
+    }
 }
 
 // clear all the fields
