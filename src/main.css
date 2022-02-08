@@ -12,3 +12,6 @@ input[type="submit"]{
 .s2{
     margin: 10px;
 }
+.hide{
+    display: none;
+}
