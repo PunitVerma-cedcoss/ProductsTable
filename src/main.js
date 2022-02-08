@@ -53,17 +53,22 @@ function informError(id, error = true) {
 
 // render table with json data
 function renderTable(object) {
-    var tr = generateNodes("tr")
-    tr.appendChild(generateNodes("td", object.ProductId))
-    tr.appendChild(generateNodes("td", object.ProductName))
-    tr.appendChild(generateNodes("td", `USD ${object.ProductPrice}`))
-    document.getElementById("values").prepend(tr)
+    var markup = ''
+    data.forEach(i => {
+        markup += `
+            <tr>
+                <td>${i.ProductId}</td>
+                <td>${i.ProductName}</td>
+                <td>USD ${i.ProductPrice}</td>
+            </tr>
+        `
+    })
+    document.getElementById("values").innerHTML = markup
+    clearValues()
 }
 
-// generate nodes
-function generateNodes(type, content = '') {
-    var node = document.createElement(type)
-    if (content != '')
-        node.innerText = content
-    return node
+function clearValues() {
+    document.getElementById("pid").value = ""
+    document.getElementById("pn").value = ""
+    document.getElementById("pp").value = ""
 }
