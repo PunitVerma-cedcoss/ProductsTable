@@ -26,6 +26,14 @@ function handleErrorUtil(ProductId, ProductName, ProductPrice) {
     if (ProductPrice == '' || isNaN(parseInt(ProductPrice))) {
         errors.push("pp")
     }
+    for (let index = 0; index < data.length; index++) {
+        if(data[index].ProductId === ProductId)
+        {
+            errors.push("pid")
+            break
+        }
+        
+    }
     return errors
 }
 function handleError(ProductId, ProductName, ProductPrice) {
