@@ -1,6 +1,6 @@
 var data = []
-data.push({ "ProductId": 1, "ProductName": "iPhone5", "ProductPrice": "210" })
-data.push({ "ProductId": 2, "ProductName": "iPhone6", "ProductPrice": "312" })
+// data.push({ "ProductId": 1, "ProductName": "iPhone5", "ProductPrice": "210" })
+// data.push({ "ProductId": 2, "ProductName": "iPhone6", "ProductPrice": "312" })
 renderTable()
 // hadling form submit
 document.getElementById("submit").addEventListener("click", function (e) {
@@ -22,7 +22,8 @@ document.getElementById("update").addEventListener("click", function (e) {
     updateUtil()
 })
 // error handling
-function handleErrorUtil(ProductId, ProductName, ProductPrice) {
+function handleErrorUtil(ProductId, ProductName, ProductPrice,ckId) {
+    console.log("ck id is",ckId)
     const errors = []
     if (ProductId == '' || isNaN(parseInt(ProductId))) {
         errors.push("pid")
@@ -33,14 +34,25 @@ function handleErrorUtil(ProductId, ProductName, ProductPrice) {
     if (ProductPrice == '' || isNaN(parseInt(ProductPrice))) {
         errors.push("pp")
     }
+    if(ckId){
+        console.log("checking for id")
+        for (let index = 0; index < data.length; index++) {
+            if(data[index].ProductId === ProductId)
+            {
+                console.log("id exist")
+                errors.push("pid")
+                break
+            }   
+        }
+    }
     return errors
 }
-function handleError(ProductId, ProductName, ProductPrice) {
+function handleError(ProductId, ProductName, ProductPrice,ckId) {
     // resolving the fields
     ["pp", "pid", "pn"].forEach(e => {
         informError(e, false)
     });
-    const errors = handleErrorUtil(ProductId, ProductName, ProductPrice)
+    const errors = handleErrorUtil(ProductId, ProductName, ProductPrice,ckId)
     if (errors.length > 0) {
         // alert(handleErrorUtil(ProductId, ProductName, ProductPrice))
         errors.forEach(e => {
