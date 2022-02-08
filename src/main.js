@@ -8,7 +8,7 @@ document.getElementById("submit").addEventListener("click", function (e) {
     var ProductId = document.getElementById("pid").value
     var ProductName = document.getElementById("pn").value
     var ProductPrice = document.getElementById("pp").value
-    if (handleError(ProductId, ProductName, ProductPrice)) {
+    if (handleError(ProductId, ProductName, ProductPrice,true)) {
         data.push({ "ProductId": ProductId, "ProductName": ProductName, "ProductPrice": ProductPrice })
         renderTable()
     }
